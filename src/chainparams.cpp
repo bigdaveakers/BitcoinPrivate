@@ -64,6 +64,9 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
         consensus.nUnmovedBurnHeight = 480000;
         consensus.zResetHeight = 455500;
+        
+        // sprout burn
+        consensus.zGrothResetHeight = 600000;
 
         pchMessageStart[0] = 0xa8;
         pchMessageStart[1] = 0xea;
@@ -123,6 +126,9 @@ public:
         base58Prefixes[EXT_SECRET_KEY]     = {0x04,0x88,0xAD,0xE4};
         // guarantees the first 2 characters, when base58 encoded, are "zk"
         base58Prefixes[ZCPAYMENT_ADDRRESS] = {0x16,0xA8};
+        // NEED TO WORK THIS OUT
+        // guarantees the first 4 characters, when base58 encoded, are "ZiVK"
+        //base58Prefixes[ZCVIEWING_KEY]      = {0xA8,0xAB,0xD3};
         // guarantees the first 2 characters, when base58 encoded, are "SK"
         base58Prefixes[ZCSPENDING_KEY]     = {0xAB,0x36};
 
@@ -158,6 +164,9 @@ public:
         nForkStartHeight = 272991;
         nForkHeightRange = 5467;
 
+        //Sapling
+        saplingActivationBlock = 600000;
+        
         nEquihashForkHeight = 600001;
         nEquihashNnew = 192;
         nEquihashKnew = 7;
@@ -197,11 +206,17 @@ public:
 
         consensus.nUnmovedBurnHeight = 480000;
         consensus.zResetHeight = 455500;
+        
+        // sprout burn
+        consensus.zGrothResetHeight = 600000;
 
         pchMessageStart[0] = 0xf6;
         pchMessageStart[1] = 0x1b;
         pchMessageStart[2] = 0xf6;
         pchMessageStart[3] = 0xd6;
+
+        //Sapling
+        saplingActivationBlock = 600000; 
 
         vAlertPubKey = ParseHex("048679fb891b15d0cada9692047fd0ae26ad8bfb83fabddbb50334ee5bc0683294deb410be20513c5af6e7b9cec717ade82b27080ee6ef9a245c36a795ab044bb3");
         nDefaultPort = 17933;
@@ -230,6 +245,9 @@ public:
         base58Prefixes[EXT_SECRET_KEY]     = {0x04,0x35,0x83,0x94};
         // guarantees the first 2 characters, when base58 encoded, are "zz"
         base58Prefixes[ZCPAYMENT_ADDRRESS] = {0x16,0xC0};
+        //NEED TO CHECK THIS
+        // guarantees the first 4 characters, when base58 encoded, are "ZiVt"
+        base58Prefixes[ZCVIEWING_KEY]      = {0xA8,0xAC,0x0C};
         // guarantees the first 2 characters, when base58 encoded, are "ST"
         base58Prefixes[ZCSPENDING_KEY]     = {0xAC,0x08};
 
@@ -288,11 +306,18 @@ public:
         consensus.nPowDifficultyBombHeight = 600000;
         consensus.nUnmovedBurnHeight = 480000;
         consensus.zResetHeight = 455500;
+        
+        // sprout burn
+        consensus.zGrothResetHeight = 600000;
 
         pchMessageStart[0] = 0xaa;
         pchMessageStart[1] = 0xe8;
         pchMessageStart[2] = 0x3f;
         pchMessageStart[3] = 0x5f;
+        
+        //Sapling
+        saplingActivationBlock = 600000; 
+
         nMaxTipAge = 24 * 60 * 60;
         const size_t N = 48, K = 5;
         BOOST_STATIC_ASSERT(equihash_parameters_acceptable(N, K));
@@ -373,4 +398,8 @@ bool SelectParamsFromCommandLine()
 
     SelectParams(network);
     return true;
+}
+bool CChainParams::isGrothActive(int nHeight) const {
+        assert(saplingActivationBlock > 0);
+        return nHeight >= saplingActivationBlock;
 }
