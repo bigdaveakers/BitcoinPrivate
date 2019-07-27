@@ -31,7 +31,11 @@ private:
 
     // Output note gadgets
     std::array<std::shared_ptr<output_note_gadget<FieldT>>, NumOutputs> zk_output_notes;
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> af7467fa73ad84812b0240b092b3f6a01f397f4b
 public:
     // PRF_pk only has a 1-bit domain separation "nonce"
     // for different macs.
