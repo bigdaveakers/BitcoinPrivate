@@ -81,6 +81,7 @@ struct Params {
     int nPowDifficultyBombHeight;
     int nUnmovedBurnHeight;
     int zResetHeight;
+    int zGrothResetHeight;
 
     int64_t AveragingWindowTimespan(bool isFork = false) const { return nPowAveragingWindow * nPowTargetSpacing / (isFork ? 20 : 1); }
     int64_t MinActualTimespan(bool isFork = false) const { return (AveragingWindowTimespan(isFork) * (100 - nPowMaxAdjustUp  )) / 100; }
