@@ -4,8 +4,8 @@
  * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
  **********************************************************************/
 
-#ifndef SECP256K1_MODULE_RECOVERY_TESTS_H
-#define SECP256K1_MODULE_RECOVERY_TESTS_H
+#ifndef SECP256K1_BENCH_H
+#define SECP256K1_BENCH_H
 
 #ifdef USE_BASIC_CONFIG
 
