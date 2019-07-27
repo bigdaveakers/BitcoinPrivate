@@ -47,6 +47,7 @@ public:
 
         ZCPAYMENT_ADDRRESS,
         ZCSPENDING_KEY,
+        ZCVIEWING_KEY,
 
         MAX_BASE58_TYPES
     };
@@ -105,7 +106,8 @@ public:
     uint64_t ForkHeightRange() const { return nForkHeightRange; };
 
     uint64_t EquihashForkHeight() const { return nEquihashForkHeight; };
-
+    bool isGrothActive(int nHeight) const;
+    
 protected:
     CChainParams() {}
 
@@ -138,6 +140,9 @@ protected:
     uint64_t nEquihashForkHeight;
     unsigned int nEquihashNnew;
     unsigned int nEquihashKnew;
+    
+    //Sapling 
+    int saplingActivationBlock;
 };
 
 /**

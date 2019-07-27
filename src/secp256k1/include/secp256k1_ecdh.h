@@ -1,11 +1,11 @@
-#ifndef _SECP256K1_ECDH_
-# define _SECP256K1_ECDH_
+#ifndef SECP256K1_ECDH_H
+#define SECP256K1_ECDH_H
 
-# include "secp256k1.h"
+#include "secp256k1.h"
 
-# ifdef __cplusplus
+#ifdef __cplusplus
 extern "C" {
-# endif
+#endif
 
 /** Compute an EC Diffie-Hellman secret in constant time
  *  Returns: 1: exponentiation was successful
